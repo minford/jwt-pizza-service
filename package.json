@@ -6,12 +6,13 @@
   "scripts": {
     "start": "node index.js",
     "test": "jest",
-     "lint": "eslint ."
+    "lint": "eslint ."
   },
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.1.1",
-    "express": "^4.19.2",
+    "express": "^4.21.2",
+    "index.js": "^0.0.3",
     "jsonwebtoken": "^9.0.2",
     "mysql2": "^3.9.7"
   },
