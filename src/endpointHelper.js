@@ -1,6 +1,7 @@
 class StatusCodeError extends Error {
   constructor(message, statusCode) {
     super(message);
+    app.use(logger.httpLogger);
     this.statusCode = statusCode;
   }
 }
