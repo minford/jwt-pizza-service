@@ -4,6 +4,7 @@ const orderRouter = require('./routes/orderRouter.js');
 const franchiseRouter = require('./routes/franchiseRouter.js');
 const version = require('./version.json');
 const config = require('./config.js');
+const logger = require('./logger');
 
 const app = express();
 app.use(express.json());
@@ -29,6 +30,8 @@ apiRouter.use('/docs', (req, res) => {
     endpoints: [...authRouter.endpoints, ...orderRouter.endpoints, ...franchiseRouter.endpoints],
     config: { factory: config.factory.url, db: config.db.connection.host },
   });
+  res.send({ docs: req.params });
+
 });
 
 app.get('/', (req, res) => {
@@ -36,6 +39,7 @@ app.get('/', (req, res) => {
     message: 'welcome to JWT Pizza',
     version: version.version,
   });
+  res.send({ res: req.params });
 });
 
 app.use('*', (req, res) => {
