@@ -2,6 +2,7 @@ const app = require('./service.js');
 const metrics = require('./metrics.js');
 
 app.use(metrics.requestTracker);
+app.use(logger.httpLogger);
 
 const port = process.argv[2] || 3000;
 app.listen(port, () => {
