@@ -194,7 +194,7 @@ class Metrics {
         return memoryUsage.toFixed(2);
     }
 
-    sendMetricToGrafana(metricName, metricValue, type, unit, labels = {}) {
+    sendMetricToGrafana(metricName, metricValue, type, unit) {
         const metric = {
             resourceMetrics: [
                 {
