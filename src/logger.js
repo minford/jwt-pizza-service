@@ -3,7 +3,7 @@ const config = require('./config.js');
 class Logger {
   httpLogger = (req, res, next) => {
     let send = res.send;
-    res.send = (resBody) => {
+    res.send = function (resBody) {
       const logData = {
         authorized: !!req.headers.authorization,
         path: req.originalUrl,
@@ -12,11 +12,14 @@ class Logger {
         reqBody: JSON.stringify(req.body),
         resBody: JSON.stringify(resBody),
       };
+    
       const level = this.statusToLogLevel(res.statusCode);
       this.log(level, 'http', logData);
-      res.send = send;
-      return res.send(resBody);
+    
+      // Use original send function
+      return send.call(this, resBody);
     };
+    
     next();
   };
 
